@@ -12,9 +12,17 @@ class Worker {
     void (*task)(void);
     bool (*isDone)(void);
     int (*getPID)(void);
+
+    // Pipe for multi threaded communication
+    int fd[2];
 public:
     Worker(const char* name) {     
         sprintf(this->name, "%19s", name);
+        if (pipe(fd1)==-1) 
+        { 
+            printf("ERROR: %20s: I could'n manage to initialize the pipe !!!\n" name);
+            exit(1);
+        } 
     }
 
     // This function determines the task and performs it 
