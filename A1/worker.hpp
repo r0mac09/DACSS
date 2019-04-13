@@ -5,7 +5,10 @@
 #include <chair.hpp>
 
 class Worker {
+    // The first letter of teh workers name determines the task that he is able to do
     char name[20];
+
+    // Pointers to the specific tasks and pId of a specific chair
     void (*task)(void);
     bool (*isDone)(void);
     int (*getPID)(void);
@@ -14,6 +17,7 @@ public:
         sprintf(this->name, "%19s", name);
     }
 
+    // This function determines the task and performs it 
     void work(Chair* chair) {
         switch(name[0]) {
             case 'A':
@@ -40,15 +44,16 @@ public:
         }
         this->getPID = chair->getPID;
 
+        // If the task is already done, don't do anything
         if(isDone()) {
             printf("%20s: This task is already done for chair %d. I won't do anything.\n", name, getPID());
             return;
         }
 
+        // Basically just wait for half a second
         _sleep(500);
+        // Perform the task
         this->task();
         printf("%20s: I've done my task for chair %d\n", name, getPID());
     }
-
-    int nextWorker;
 };
