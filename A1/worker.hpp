@@ -21,7 +21,7 @@ public:
 
     // This function determines the task and performs it 
     Chair* work(Chair* chair) {
-        if(!chair) {
+        if (!chair) {
             printf("ERROR : WORKER : %s : work() : Worker recieved null chair pointer\n", name);
         }
 
@@ -59,7 +59,7 @@ public:
         this->getPID = (int (*)(Chair*))&chair->getPID;
 
         // If the task is already done, don't do anything
-        if((*isDone)(chair)) {
+        if ((*isDone)(chair)) {
             printf("WORKER : %s : This task is already done for chair %d. I won't do anything.\n", name, getPID(chair));
             return chair;
         }
@@ -72,4 +72,10 @@ public:
 
         return chair;
     }
+
+    // To be used for variant 3
+
+    const char* getName() { return name; }
+    virtual void acknowledge(Chair*) = 0;
 };
+

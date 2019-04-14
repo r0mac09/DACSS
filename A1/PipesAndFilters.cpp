@@ -34,7 +34,7 @@ public:
     Chair* makeNormalChair(const int productId) {
         Chair* chair = new Chair(productId);
 
-        if(!chair) {
+        if (!chair) {
             printf("ERROR : FACTORY : makeNormalChair(%d) : MEMORY ALLOCATION ERROR\n", productId);
             exit(1);
         }
@@ -42,11 +42,11 @@ public:
         // PIPELINE
         chair = Petrica->work(Stelica->work(Bogdan->work(Florin->work(Costel->work(chair)))));
 
-        if(!chair) {
+        if (!chair) {
             printf("ERROR : FACTORY : makeNoBackrestChair(%d) : NULL CHAIR AFTER\n", productId);
         }
 
-        if(!chair->isDone(NORMAL_CHAIR)) {
+        if (!chair->isDone(NORMAL_CHAIR)) {
             printf("FACTORY : makeNormalChair(%d) : Final chair does not match the requested product\n", productId);
         } else {
             printf("FACTORY : makeNormalChair(%d) : Final chair COMPLETE\n", productId);
@@ -58,7 +58,7 @@ public:
     Chair* makeArmrestChair(const int productId) {
         Chair* chair = new Chair(productId);
 
-        if(!chair) {
+        if (!chair) {
             printf("ERROR : FACTORY : makeArmrestChair(%d) : MEMORY ALLOCATION ERROR\n", productId);
             exit(1);
         }
@@ -66,11 +66,11 @@ public:
         // PIPELINE
         chair = Petrica->work(Andrei->work(Stelica->work(Bogdan->work(Florin->work(Costel->work(chair))))));
 
-        if(!chair) {
+        if (!chair) {
             printf("ERROR : FACTORY : makeArmrestChair(%d) : NULL CHAIR AFTER\n", productId);
         }
 
-        if(!chair->isDone(ARMREST_CHAIR)) {
+        if (!chair->isDone(ARMREST_CHAIR)) {
             printf("FACTORY : makeArmrestChair(%d) : Final chair does not match the requested product\n", productId);
         } else {
             printf("FACTORY : makeArmrestChair(%d) : Final chair COMPLETE\n", productId);
@@ -82,7 +82,7 @@ public:
     Chair* makeNoBackrestChair(const int productId) {
         Chair* chair = new Chair(productId);
 
-        if(!chair) {
+        if (!chair) {
             printf("ERROR : FACTORY : makeNoBackrestChair(%d) : MEMORY ALLOCATION ERROR\n", productId);
             exit(1);
         }
@@ -90,11 +90,11 @@ public:
         // PIPELINE
         chair = Petrica->work(Stelica->work(Florin->work(Costel->work(chair))));
 
-        if(!chair) {
+        if (!chair) {
             printf("ERROR : FACTORY : makeNoBackrestChair(%d) : NULL CHAIR AFTER\n", productId);
         }
 
-        if(!chair->isDone(NOBACKREST_CHAIR)) {
+        if (!chair->isDone(NOBACKREST_CHAIR)) {
             printf("FACTORY : makeNoBackrestChair(%d) : Final chair does not match the requested product\n", productId);
         } else {
             printf("FACTORY : makeNoBackrestChair(%d) : Final chair COMPLETE\n", productId);

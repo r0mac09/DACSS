@@ -35,13 +35,13 @@ public:
 
     void addChair(const int productId) {
         chairs = (Chair**)realloc(chairs, sizeof(Chair*)*(chairCnt+1));
-        if(!chairs) {
+        if (!chairs) {
             printf("ERROR : BLACKBOARD : addChair() : FATAL MEMORY ALLOCATION ERROR\n");
             exit(1);
         }
 
         chairs[chairCnt] = new Chair(productId);
-        if(!chairs[chairCnt]) {
+        if (!chairs[chairCnt]) {
             printf("ERROR : BLACKBOARD : addChair() : MEMORY ALLOCATION ERROR\n");
             return;
         }
@@ -52,13 +52,13 @@ public:
     void removeChair(const int index) {
         Chair** tmp = (Chair**)malloc(sizeof(Chair*)*(chairCnt-1));
 
-        if(!tmp) {
+        if (!tmp) {
             printf("ERROR : BLACKBOARD : removeChair() : MEMORY ALLOCATION ERROR\n");
             return;
         }
 
         for(int i = 0, j = 0; i < chairCnt; i++) {
-            if(i == index) continue;
+            if (i == index) continue;
             tmp[j] = chairs[i];
             j++;
         }
@@ -71,7 +71,7 @@ public:
 
     void assignWork() {
         for(int i = 0; i < chairCnt; i++) {
-            if(chairs[i]->isDone(NORMAL_CHAIR)) {
+            if (chairs[i]->isDone(NORMAL_CHAIR)) {
                 printf("BLACKBOARD : assignWork() : Chair with product ID %d completed\n", chairs[i]->getPID(chairs[i]));
                 removeChair(i);
                 continue;
