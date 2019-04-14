@@ -1,8 +1,5 @@
 #include <cstdio>
 #include <cstdlib>
-#include <pthread.h>
-#include <unistd.h>
-#include <list>
 
 #include "worker.hpp"
 
