@@ -74,7 +74,7 @@ public:
     }
 
     // To be used for variant 3
-
+    //
     const char* getName() { return name; }
     virtual void acknowledge(Chair*) = 0;
 };
