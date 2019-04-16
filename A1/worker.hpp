@@ -2,8 +2,6 @@
 #include <cstdlib>
 #include <list>
 #include <iostream>
-#include <thread>
-#include <chrono>
 #include <unistd.h>
 #include "chair.hpp"
 
