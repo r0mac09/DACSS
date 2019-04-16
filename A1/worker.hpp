@@ -2,13 +2,14 @@
 #include <cstdlib>
 #include <list>
 #include <iostream>
-#include <windows.h>
-
+#include <thread>
+#include <chrono>
+#include <unistd.h>
 #include "chair.hpp"
 
-void sleep(unsigned milliseconds)
+void sleep_(unsigned milliseconds)
 {
-    Sleep(milliseconds);
+    usleep(milliseconds*1000);
 }
 
 class Worker {
@@ -71,7 +72,7 @@ public:
         }
 
         // Basically just wait for half a second
-        sleep(500);
+        sleep_(500);
         // Perform the task
         this->task(chair);
         printf("WORKER : %s : I've done my task for chair %d\n", name, getPID(chair));
