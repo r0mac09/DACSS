@@ -72,7 +72,7 @@ public:
     void assignWork() {
         for(int i = 0; i < chairCnt; i++) {
             if (chairs[i]->isDone(NORMAL_CHAIR)) {
-                printf("BLACKBOARD : assignWork() : Chair with product ID %d completed\n", chairs[i]->getPID(chairs[i]));
+                printf("BLACKBOARD : assignWork() : Chair with product ID %d completed\n", getPID(chairs[i]));
                 removeChair(i);
                 continue;
             }

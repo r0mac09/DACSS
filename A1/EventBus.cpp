@@ -37,7 +37,6 @@ public:
         Petrica = new EvWorker("Petrica", this);
         Stelica = new EvWorker("Stelica", this);
         chair = new Chair(312321);
-        assign();
     }
     ~EventBus() {
         delete Bogdan;
@@ -56,19 +55,19 @@ public:
     }
 
     void assign() {
-        if (!chair->Bdone(chair)) {
+        if (!Bdone(chair)) {
             printf("EVENT BUS : assign() : I've assigned Bogdan to work further on this chair.\n");
             Bogdan->acknowledge(chair);
-        } else if (!chair->Cdone(chair)) {
+        } else if (!Cdone(chair)) {
             printf("EVENT BUS : assign() : I've assigned Costel to work further on this chair.\n");
             Costel->acknowledge(chair);
-        } else if (!chair->Fdone(chair)) {
+        } else if (!Fdone(chair)) {
             printf("EVENT BUS : assign() : I've assigned Florin to work further on this chair.\n");
             Florin->acknowledge(chair);
-        } else if (!chair->Pdone(chair)) {
+        } else if (!Pdone(chair)) {
             printf("EVENT BUS : assign() : I've assigned Petrica to work further on this chair.\n");
             Petrica->acknowledge(chair);
-        } else if (!chair->Sdone(chair)) {
+        } else if (!Sdone(chair)) {
             printf("EVENT BUS : assign() : I've assigned Stelica to work further on this chair.\n");
             Stelica->acknowledge(chair);
         } else {
@@ -85,6 +84,6 @@ void EvWorker::notify(Chair* chair) {
 
 int main(void) {
     EventBus* evBus = new EventBus();
-
+    evBus->assign();
     return 0;
 }

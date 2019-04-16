@@ -2,8 +2,14 @@
 #include <cstdlib>
 #include <list>
 #include <iostream>
+#include <windows.h>
 
 #include "chair.hpp"
+
+void sleep(unsigned milliseconds)
+{
+    Sleep(milliseconds);
+}
 
 class Worker {
     // The first letter of teh workers name determines the task that he is able to do
@@ -29,34 +35,34 @@ public:
 
         switch(qualif) {
             case 'A':
-                this->task   = (void (*)(Chair*))&chair->A;
-                this->isDone = (bool (*)(Chair*))&chair->Adone;
+                this->task   = (void (*)(Chair*))A;
+                this->isDone = (bool (*)(Chair*))Adone;
                 break;
             case 'B':
-                this->task   = (void (*)(Chair*))&chair->B;
-                this->isDone = (bool (*)(Chair*))&chair->Bdone;
+                this->task   = (void (*)(Chair*))B;
+                this->isDone = (bool (*)(Chair*))Bdone;
                 break;
             case 'C':
-                this->task   = (void (*)(Chair*))&chair->C;
-                this->isDone = (bool (*)(Chair*))&chair->Cdone;
+                this->task   = (void (*)(Chair*))C;
+                this->isDone = (bool (*)(Chair*))Cdone;
                 break;
             case 'F':
-                this->task   = (void (*)(Chair*))&chair->F;
-                this->isDone = (bool (*)(Chair*))&chair->Fdone;
+                this->task   = (void (*)(Chair*))F;
+                this->isDone = (bool (*)(Chair*))Fdone;
                 break;
             case 'P':
-                this->task   = (void (*)(Chair*))&chair->P;
-                this->isDone = (bool (*)(Chair*))&chair->Pdone;
+                this->task   = (void (*)(Chair*))P;
+                this->isDone = (bool (*)(Chair*))Pdone;
                 break;
             case 'S':
-                this->task   = (void (*)(Chair*))&chair->S;
-                this->isDone = (bool (*)(Chair*))&chair->Sdone;
+                this->task   = (void (*)(Chair*))S;
+                this->isDone = (bool (*)(Chair*))Sdone;
                 break;
             default:
                 printf("WORKER : %s : I'm not qualified for this task. Who gave me this chair?\n", name);
                 return chair;
         }
-        this->getPID = (int (*)(Chair*))&chair->getPID;
+        this->getPID = (int (*)(Chair*))getPID;
 
         // If the task is already done, don't do anything
         if ((*isDone)(chair)) {
@@ -65,7 +71,7 @@ public:
         }
 
         // Basically just wait for half a second
-        _sleep(500);
+        sleep(500);
         // Perform the task
         this->task(chair);
         printf("WORKER : %s : I've done my task for chair %d\n", name, getPID(chair));
@@ -76,6 +82,8 @@ public:
     // To be used for variant 3
     //
     const char* getName() { return name; }
-    virtual void acknowledge(Chair*) = 0;
+    void acknowledge(Chair*) {
+        printf("WORKER : %s : acknowledge() : Uuuuuuhmmmmm..... What?\n", name);
+    };
 };
 
